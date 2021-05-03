@@ -5,14 +5,16 @@ import urllib3
 import ast
 import boto3
 
+#Global Variables - Customize Here!
+districtCode = 363
+urlfixed = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id="
+
 def lambda_handler(event, context):
     
-    # API Call for Today
+    # Build the URL
     rawdate = datetime.datetime.now()
     dateformat = "a"
     date = rawdate.strftime("%d-%m-%Y")
-    districtCode = 363
-    urlfixed = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id="
     url = urlfixed + str(districtCode) + "&date=" + date
     
     #Call HTTP URL (GET)
