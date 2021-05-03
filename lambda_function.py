@@ -5,10 +5,11 @@ import urllib3
 import ast
 import boto3
 
-#Global Variables - Customize Here. More in README file.
+#Global Variables - Customize Here!
 districtCode = 363 #Change to your own district. More info from https://apisetu.gov.in/public/marketplace/api/cowin#/Appointment%20Availability%20APIs/findByDistrict
 age = 18 # Valid Values are 18 or 45 only
 pincodeFirstCharacters = "4110" # Filter according to your pincode
+topicArn = 'YOUR_TOPIC_ARN_HERE' # Your topic ARN
 
 def lambda_handler(event, context):
     
@@ -45,7 +46,7 @@ def lambda_handler(event, context):
     if not resultDict:
         print("Empty")
     else:
-        response = sns.publish(TopicArn='arn:aws:sns:ap-south-1:956889230518:vaccineAlert', Message=str(resultDict), Subject="VACCINE ALERT!")
+        response = sns.publish(TopicArn=topicArn, Message=str(resultDict), Subject="VACCINE ALERT!")
         print("Response Mailed!")
     
     return resultDict
