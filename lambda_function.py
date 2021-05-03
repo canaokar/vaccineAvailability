@@ -5,7 +5,7 @@ import urllib3
 import ast
 import boto3
 
-#Global Variables - Customize Here!
+#Global Variables - Customize Here. More in README file.
 districtCode = 363 #Change to your own district. More info from https://apisetu.gov.in/public/marketplace/api/cowin#/Appointment%20Availability%20APIs/findByDistrict
 age = 18 # Valid Values are 18 or 45 only
 pincodeFirstCharacters = "4110" # Filter according to your pincode
