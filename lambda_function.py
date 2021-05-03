@@ -2,13 +2,11 @@ import json
 import os
 import datetime
 import urllib3
-import logging
 import ast
 import boto3
 
 def lambda_handler(event, context):
     
-    logger = logging.getLogger()
     # API Call for Today
     rawdate = datetime.datetime.now()
     dateformat = "a"
@@ -32,7 +30,6 @@ def lambda_handler(event, context):
     charsToMatch = "4110"
     resultDict =[]
     
-    logger.info(centers)
     #Parse
     if isinstance(centers, dict):
         for k, v in centers.items(): #centers(k is str, v is list)
@@ -46,7 +43,7 @@ def lambda_handler(event, context):
     if not resultDict:
         print("Empty")
     else:
-        response = sns.publish(TopicArn='YOUR_TOPIC_HERE', Message=str(resultDict), Subject="VACCINE ALERT!")
+        response = sns.publish(TopicArn='arn:aws:sns:ap-south-1:956889230518:vaccineAlert', Message=str(resultDict), Subject="VACCINE ALERT!")
         print("Response Mailed!")
     
     return resultDict
